@@ -1,0 +1,17 @@
+{
+  "name": "mean_portfolio_project1",
+  "description": "",
+  "main": "server.js",
+  "authors": [
+    "Jason <rhuidean06@gmail.com>"
+  ],
+  "license": "ISC",
+  "homepage": "https://github.com/rhuidean/mean_portfolio_project1",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
