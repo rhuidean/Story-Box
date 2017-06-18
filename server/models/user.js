@@ -1,6 +1,6 @@
 var mongoose = require('mongoose');
 
-var UserSchema = new mongoose.UserSchema({
+var UserSchema = new mongoose.Schema({
 	username: {
 		type: String,
 		required: [true, "Name field cannot be blank."]
