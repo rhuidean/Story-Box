@@ -23,7 +23,7 @@
                             <!-- Username -->
                             <label class="control-label"  for="username">Username</label>
                             <div class="controls">
-                              <input type="text" id="username" name="username" placeholder="" class="input-xlarge">
+                              <input type="text" id="username" ng-model="UC.newUser.username" placeholder="" class="input-xlarge">
                             </div>
                           </div>
      
@@ -31,7 +31,7 @@
                             <!-- Password-->
                             <label class="control-label" for="password">Password</label>
                             <div class="controls">
-                              <input type="password" id="password" name="password" placeholder="" class="input-xlarge">
+                              <input type="password" id="password" ng-model="UC.newUser.password" placeholder="" class="input-xlarge">
                             </div>
                           </div>
      
@@ -46,16 +46,12 @@
                       </form>                
                     </div>
                     <div class="tab-pane fade" id="create">
-                      <form id="tab">
+                      <form id="tab" ng-submit="UC.create(UC.newUser)">
                         <label>Username</label>
-                        <input type="text" value="" class="input-xlarge">
-                        <label>First Name</label>
-                        <input type="text" value="" class="input-xlarge">
-                        <label>Last Name</label>
                         <input type="text" value="" class="input-xlarge">
                         <label>Email</label>
                         <input type="text" value="" class="input-xlarge">
-                        <label>Address</label>
+                        <label>Password</label>
                         <textarea value="Smith" rows="3" class="input-xlarge">
                         </textarea>
      
