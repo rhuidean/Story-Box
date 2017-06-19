@@ -3,6 +3,9 @@ var User = mongoose.model('User');
 
 module.exports = {
 	index: function(req,res){
+		console.log("cookies",req.cookies);
+		console.log("===============");
+		console.log("session",req.session);
 		User.find({}, function(err,users){
 			if(err){
 				return res.json(err);
@@ -17,6 +20,12 @@ module.exports = {
 			if(err){
 				return res.json(err);
 			}
+			if(res.session.user){
+				req.session.destroy();
+			}
+			else{
+				req.session.user=user;
+			}
 			return res.json(user);
 		})
 	},
@@ -29,7 +38,10 @@ module.exports = {
 			}
 
 			// check for null, and authenticate the password
-			if(user && user.authenticate(req.boy.password)){
+			if(user && user.authenticate(req.body.password)){
+				if(!req.session.user){
+					req.session.user= user;
+				}
 				return res.json(user)
 			}
 
