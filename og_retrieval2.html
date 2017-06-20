@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>OG element retrieval test</title>
+</head>
+<body>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function(){
+			var myUrl = 'https://www.bloomberg.com/politics/articles/2017-06-18/trump-not-under-investigation-for-obstruction-lawyer-tells-nbc';
+//  But if you make it from a browser, then it will work without problem ...
+
+// However to make it work, we are going to use the cors-anywhere free service to bypass this
+			var proxy = 'https://cors-anywhere.herokuapp.com/';
+
+			$.ajax({
+    // The proxy url expects as first URL parameter the URL to be bypassed
+    // https://cors-anywhere.herokuapp.com/{my-url-to-bypass}
+    				url: proxy + myUrl,
+    				dataType: 'html',
+    				success:function(result){
+        				console.log(typeof(result))
+        				console.log(result.split("meta"))
+    				}
+			});
+		});
+		// $("#target").load("https://www.bloomberg.com/politics/articles/2017-06-18/trump-not-under-investigation-for-obstruction-lawyer-tells-nbc meta[property='og:image']",function(res,status,xhr){
+		// 	var $meta = $("meta",this);
+
+		// 	$(this).text($meta.attr("content"));
+
+		// 	$meta.remove();
+		// });
+		
+	</script>
+	<meta property="og:image" content="https://assets.bwbx.io/images/users/iqjWHBFdfxIU/iDeCR6Ue63L4/v1/1200x912.jpg">
+	<meta property="og:site_name" content="Bloomberg.com">
+	<meta property="og:title" content="Trump Not Under Investigation for Obstruction, Lawyer Says">
+	<meta property="og:url" content="https://www.bloomberg.com/politics/articles/2017-06-18/trump-not-under-investigation-for-obstruction-lawyer-tells-nbc">
+	<meta name="fb:status" content="Donald Trump isn’t under investigation by special counsel Robert Mueller, a member of the president’s legal team said, despite Trump’s repeated comments on social media that he’s the target of a “witch hunt.”">
+
+</body>
+	<div id="target">
+		
+	</div>
+</html>
+
+https://stackoverflow.com/questions/7524585/how-do-i-get-the-information-from-a-meta-tag-with-javascript

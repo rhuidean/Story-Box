@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>OG element retrieval test</title>
+</head>
+<body>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function(){
+			var scrape = require('html-metadata');
+ 
+			var url = "https://hiddenremote.com/2017/06/19/four-problems-wonder-woman-movie/";
+ 
+			scrape(url, function(error, metadata){
+    			console.log(metadata["openGraph"]);
+    			$("#target").load(metadata["openGraph"].title);
+			});
+			
+		});
+		// $("#target").load("https://www.bloomberg.com/politics/articles/2017-06-18/trump-not-under-investigation-for-obstruction-lawyer-tells-nbc meta[property='og:image']",function(res,status,xhr){
+		// 	var $meta = $("meta",this);
+
+		// 	$(this).text($meta.attr("content"));
+
+		// 	$meta.remove();
+		// });
+		
+	</script>
+	<meta property="og:image" content="https://assets.bwbx.io/images/users/iqjWHBFdfxIU/iDeCR6Ue63L4/v1/1200x912.jpg">
+	<meta property="og:site_name" content="Bloomberg.com">
+	<meta property="og:title" content="Trump Not Under Investigation for Obstruction, Lawyer Says">
+	<meta property="og:url" content="https://www.bloomberg.com/politics/articles/2017-06-18/trump-not-under-investigation-for-obstruction-lawyer-tells-nbc">
+	<meta name="fb:status" content="Donald Trump isn’t under investigation by special counsel Robert Mueller, a member of the president’s legal team said, despite Trump’s repeated comments on social media that he’s the target of a “witch hunt.”">
+
+</body>
+	<div id="target">
+		
+	</div>
+</html>
+
+https://stackoverflow.com/questions/7524585/how-do-i-get-the-information-from-a-meta-tag-with-javascript

@@ -2,6 +2,7 @@ var mongoose = require('mongoose');
 var User = mongoose.model('User');
 
 module.exports = {
+
 	index: function(req,res){
 		console.log("cookies",req.cookies);
 		console.log("===============");
@@ -20,7 +21,7 @@ module.exports = {
 			if(err){
 				return res.json(err);
 			}
-			if(res.session.user){
+			if(req.session.user){
 				req.session.destroy();
 			}
 			else{
@@ -41,6 +42,7 @@ module.exports = {
 			if(user && user.authenticate(req.body.password)){
 				if(!req.session.user){
 					req.session.user= user;
+					console.log(req.session.user);
 				}
 				return res.json(user)
 			}
@@ -56,6 +58,17 @@ module.exports = {
 		})
 	},
 
+	// addFriend: function(req,res){
+	// 	console(req.body);
+	// 	User.findByIdAndUpdate(req.params.id,{$push:{"friends":req.params.id}},{new:true},function(err,message){
+	// 		if(err){
+	// 			return res.json(err);
+	// 		}
+	// 		return res.json(err);
+	// 	})
+	// 	return res.json(message);
+	// }
+
 	// show: function(req,res){
 	// 	User.findById(req.params.id).exec(function(err,user){
 	// 		if(err){
@@ -69,4 +82,4 @@ module.exports = {
 	// 		return res.json(user);
 	// 	})
 	// },
-}
+};

@@ -15,7 +15,12 @@ var UserSchema = new mongoose.Schema({
 	password: {
 		type: String,
 		required: [true, "Password cannot be blank."]
-	}
+	},
+
+	// friends: {
+	// 	type: mongoose.Schema.Types.ObjectId,
+	// 	ref: 'User'
+	// }
 })
 
 UserSchema.methods.hashPassword = function(password){
