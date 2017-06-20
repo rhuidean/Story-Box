@@ -41,7 +41,7 @@ module.exports = {
 			// check for null, and authenticate the password
 			if(user && user.authenticate(req.body.password)){
 				if(!req.session.user){
-					req.session.user= user;
+					req.session.user = user;
 					console.log(req.session.user);
 				}
 				return res.json(user)
@@ -58,16 +58,28 @@ module.exports = {
 		})
 	},
 
-	// addFriend: function(req,res){
-	// 	console(req.body);
-	// 	User.findByIdAndUpdate(req.params.id,{$push:{"friends":req.params.id}},{new:true},function(err,message){
-	// 		if(err){
-	// 			return res.json(err);
-	// 		}
-	// 		return res.json(err);
-	// 	})
-	// 	return res.json(message);
-	// }
+	addFriend: function(req,res){
+		// console(req.body);
+		User.findByIdAndUpdate(req.session.user._id,{$push:{"friends":req.params.id}},{new:true},function(err,user){
+			if(err){
+				return res.json(err);
+			}
+			return res.json(user);
+		})
+		// return res.json(user);
+	},
+
+	deleteFriend: function(req,res){
+		// console(req.body);
+		User.findByIdAndUpdate(req.session.user._id,{$pull:{"friends":req.params.id}},{new:true},function(err,user){
+			if(err){
+				return res.json(err);
+			}
+			return res.json(user);
+		})
+		// return res.json(user);
+	},
+
 
 	// show: function(req,res){
 	// 	User.findById(req.params.id).exec(function(err,user){

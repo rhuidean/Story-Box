@@ -1,6 +1,11 @@
 var mongoose = require('mongoose');
 var bcrypt = require('bcryptjs');
 
+var Idea = mongoose.model('Idea');
+var Story = mongoose.model('Story');
+var Comment = mongoose.model('Comment');
+var Reply = mongoose.model('Reply');
+
 var UserSchema = new mongoose.Schema({
 	username: {
 		type: String,
@@ -17,11 +22,31 @@ var UserSchema = new mongoose.Schema({
 		required: [true, "Password cannot be blank."]
 	},
 
-	// friends: {
-	// 	type: mongoose.Schema.Types.ObjectId,
-	// 	ref: 'User'
-	// }
-})
+	stories: [{
+		type: mongoose.Schema.Types.ObjectId,
+		ref: 'Story'
+	}],
+
+	ideas: [{
+		type: mongoose.Schema.Types.ObjectId,
+		ref: 'Idea'
+	}],
+	
+	comments: [{
+		type: mongoose.Schema.Types.ObjectId,
+		ref: 'Comment'
+	}],
+
+	replies: [{
+		type: mongoose.Schema.Types.ObjectId,
+		ref: 'Reply'
+	}]
+
+	friends: [{
+		type: mongoose.Schema.Types.ObjectId,
+		ref: 'User'
+	}]
+},{timestamps: true})
 
 UserSchema.methods.hashPassword = function(password){
 	this.password = bcrypt.hashSync(password, bcrypt.genSaltSync(10))
