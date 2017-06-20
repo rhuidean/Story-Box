@@ -21,7 +21,12 @@ var CommentSchema = new mongoose.Schema({
 	comment: {
 		type: String,
 		required: [true, 'Comment cannot be blank.']
-	}
+	},
+
+	replies: [{
+		type: mongoose.Schema.Types.ObjectId,
+		ref: 'Reply'
+	}]
 
 }, { timestamps: true});
 

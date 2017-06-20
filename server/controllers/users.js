@@ -77,7 +77,7 @@ module.exports = {
 			}
 			return res.json(user);
 		})
-		// return res.json(user);
+		
 	},
 
 

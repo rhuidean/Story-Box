@@ -31,7 +31,7 @@ var UserSchema = new mongoose.Schema({
 		type: mongoose.Schema.Types.ObjectId,
 		ref: 'Idea'
 	}],
-	
+
 	comments: [{
 		type: mongoose.Schema.Types.ObjectId,
 		ref: 'Comment'
@@ -40,7 +40,7 @@ var UserSchema = new mongoose.Schema({
 	replies: [{
 		type: mongoose.Schema.Types.ObjectId,
 		ref: 'Reply'
-	}]
+	}],
 
 	friends: [{
 		type: mongoose.Schema.Types.ObjectId,

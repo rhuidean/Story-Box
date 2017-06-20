@@ -14,7 +14,7 @@ var StorySchema = new mongoose.Schema({
 	}],
 
 	ideas: [{
-		type: mongoose.Schema.Types.ObjectID,
+		type: mongoose.Schema.Types.ObjectId,
 		ref: 'Idea'
 	}]
 
