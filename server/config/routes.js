@@ -1,5 +1,5 @@
 var Users = require('../controllers/users');
-var Posts = require('../controllers/posts')
+var Stories = require('../controllers/stories')
 
 module.exports = function(app){
 	app.get('/users', Users.index);
@@ -9,7 +9,7 @@ module.exports = function(app){
 	app.patch('/users/deleteFriend:/:id',Users.deleteFriend);
 	app.post('/stories',Stories.create);
 	app.get('/stories',Stories.index);
-	app.delete('/stories:/id',Stories.destroy);
+	app.delete('/stories/:id',Stories.destroy);
 	app.put('/stories/:id',Stories.update)
 
 

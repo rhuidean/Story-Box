@@ -29,11 +29,6 @@ var IdeaSchema = new mongoose.Schema({
 		type: String
 	},
 
-	user: {
-		type: mongoose.Schema.Types.ObjectId,
-		ref: 'User'
-	},
-
 	comments: [{
 		type: mongoose.Schema.Types.ObjectId,
 		ref: 'Comment'

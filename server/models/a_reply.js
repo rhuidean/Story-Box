@@ -1,7 +1,5 @@
 var mongoose = require("mongoose");
 
-
-//
 var ReplySchema = new mongoose.Schema({
 
 	user: {
