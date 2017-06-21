@@ -1,6 +1,10 @@
 var mongoose = require('mongoose');
 
-var Idea = mongoose.model('Idea');
+// var User = mongoose.model('User');
+// var Idea = mongoose.model('Idea');
+// var Comment = mongoose.model('Comment');
+// var Reply = mongoose.model('User');
+
 var StorySchema = new mongoose.Schema({
 	
 	user: {
@@ -21,15 +25,20 @@ var StorySchema = new mongoose.Schema({
 
 }, {timestamp: true})
 
-StorySchema.pre('remove',function(callback){
-	var self=this;
-	Idea.remove({story: this._id},callback).then(function(){
-		Comment.remove({story: this._id},callback).then(function(){
-			Reply.remove({story: this._id},callback);
-		})
-	}),
-
-	
-})
+// StorySchema.pre('remove',function(callback){
+// 	var self=this;
+// 	Idea.remove({story: this._id},function(){
+// 	}).then(function(){
+// 		Comment.remove({story: this._id},callback);
+// 	}).then(function(){
+// 		Reply.remove({story: this._id},callback);
+// 	}).then(function(){
+// 		User.update({ }, {$pull: {stories: this._id}},{multi: true});
+// 	})
+// })
 
 mongoose.model('Story',StorySchema);
+
+
+
+// https://docs.mongodb.com/manual/reference/method/db.collection.update/

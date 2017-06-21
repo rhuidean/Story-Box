@@ -79,6 +79,6 @@ module.exports = {
 			}
 			return res.json(story);
 		})
-	}
+	},
 
 }

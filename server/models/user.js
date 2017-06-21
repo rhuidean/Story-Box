@@ -1,10 +1,10 @@
 var mongoose = require('mongoose');
 var bcrypt = require('bcryptjs');
 
-var Idea = mongoose.model('Idea');
-var Story = mongoose.model('Story');
-var Comment = mongoose.model('Comment');
-var Reply = mongoose.model('Reply');
+// var Idea = mongoose.model('Idea');
+// var Story = mongoose.model('Story');
+// var Comment = mongoose.model('Comment');
+// var Reply = mongoose.model('Reply');
 
 var UserSchema = new mongoose.Schema({
 	username: {
@@ -61,16 +61,16 @@ UserSchema.pre('save',function(callback){
 	callback();
 });
 
-UserSchema.pre('remove',function(callback){
-	var self = this;
-	Story.remove({user:self._id}, function(){
-	}).then(function(){
-		Idea.remove({user:self._id},callback);
-	}).then(function(){
-		Comment.remove({user:self._id},callback);
-	}).then(function(){
-		Reply.remove({user:self._id},callback);
-	})
-})
+// UserSchema.pre('remove',function(callback){
+// 	var self = this;
+// 	Story.remove({user:self._id}, function(){
+// 	}).then(function(){
+// 		Idea.remove({user:self._id},callback);
+// 	}).then(function(){
+// 		Comment.remove({user:self._id},callback);
+// 	}).then(function(){
+// 		Reply.remove({user:self._id},callback);
+// 	})
+// })
 
 mongoose.model('User', UserSchema);
