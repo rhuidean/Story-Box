@@ -21,4 +21,15 @@ var StorySchema = new mongoose.Schema({
 
 }, {timestamp: true})
 
+StorySchema.pre('remove',function(callback){
+	var self=this;
+	Idea.remove({story: this._id},callback).then(function(){
+		Comment.remove({story: this._id},callback).then(function(){
+			Reply.remove({story: this._id},callback);
+		})
+	}),
+
+	
+})
+
 mongoose.model('Story',StorySchema);

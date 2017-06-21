@@ -61,4 +61,16 @@ UserSchema.pre('save',function(callback){
 	callback();
 });
 
+UserSchema.pre('remove',function(callback){
+	var self = this;
+	Story.remove({user:self._id}, function(){
+	}).then(function(){
+		Idea.remove({user:self._id},callback);
+	}).then(function(){
+		Comment.remove({user:self._id},callback);
+	}).then(function(){
+		Reply.remove({user:self._id},callback);
+	})
+})
+
 mongoose.model('User', UserSchema);
