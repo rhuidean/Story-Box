@@ -12,5 +12,13 @@ app.factory('UserFactory',function($http){
 		$http.post('/sessions', loginUser).then(callback);
 	}
 
+	factory.session= function(callback){
+		$http.get('/sessions').then(callback);
+	}
+
+	factory.logout=function(call){
+		$http.delete('/sessions').then(callback);
+	}
+
 	return factory;
 });

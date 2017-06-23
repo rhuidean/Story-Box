@@ -44,7 +44,7 @@ module.exports = {
 					req.session.user = user;
 					console.log(req.session.user);
 				}
-				return res.json(user)
+				return res.json(req.session.user);
 			}
 
 			// bad credentials
@@ -56,6 +56,20 @@ module.exports = {
 				}
 			})
 		})
+	},
+	// req.session = {};
+	logout: function(req,res){
+		req.session.user=null;
+		return res.json(req.session.user);
+	},
+
+	session : function(req,res){
+		if(!req.session.user) {
+			return false
+		}
+		else {
+			return res.json(req.session.user);
+		}
 	},
 
 	addFriend: function(req,res){
