@@ -1,4 +1,4 @@
-app.controller('UsersController',function(UserFactory,$location){
+app.controller('UsersController',function(UserFactory,$location,$routeParams){
 	console.log('initializing UsersController...');
 	
 	var self = this;
@@ -35,6 +35,19 @@ app.controller('UsersController',function(UserFactory,$location){
 		})
 	}
 
-	self.create = function()
-
+	self.create = function(newUser){
+		console.log('newUser',newUser);
+		UserFactory.create(newUser,function(res){
+			if(res.data.errors){
+				for(key in res.data.errors){
+					var error = res.data.errors[key];
+					self.registration_errors.push(error.message);
+				}
+			} else {
+				console.log("redirect");
+				$location.url('/dashboard');
+			}
+			console.log(res);
+		})
+	}
 })

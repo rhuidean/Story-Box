@@ -1,5 +1,6 @@
 var app = angular.module('app',['ngRoute']);
 
+// backend api calls vs front view calls
 app.config(function($routeProvider){
 	$routeProvider
 	
@@ -8,9 +9,8 @@ app.config(function($routeProvider){
 		controller: 'UsersController as UC'
 	})
 
-	.when('/dashboards', {
-		templateUrl: 'partials/dashboard.html',
-		controller: 
+	.when('/dashboard', {
+		templateUrl: 'partials/dashboard.html'
 	})
 
 	.when('/users/:id',{
@@ -19,8 +19,7 @@ app.config(function($routeProvider){
 	})
 
 	.when('/query',{
-		templateUrl: 'partials/query.html',
-		controller: 
+		templateUrl: 'partials/query.html'
 	})
 
 	.otherwise({ redirectTo: '/'});

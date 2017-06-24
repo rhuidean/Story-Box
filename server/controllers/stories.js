@@ -4,6 +4,8 @@ var mongoose = require("mongoose");
 var User = mongoose.model('User');
 var Story = mongoose.model('Story');
 var Idea = mongoose.model('Idea');
+var Comment = mongoose.model('Comment');
+var Reply = mongoose.model('Reply');
 
 module.exports = {
 	
@@ -45,12 +47,11 @@ module.exports = {
 				return res.json(err);
 			}
 			User.findByIdAndUpdate(req.body.user, { $push: {stories: story._id}}, function(err,user){
-					if(err){
-						return res.json(err);
-					}
-					return res.json(story);
+				if(err){
+					return res.json(err);
 				}
-			)
+				return res.json(story);	
+			})
 		})
 	},
 
@@ -61,12 +62,12 @@ module.exports = {
 			if(err){
 				return res.json(err);
 			}
-			console.log('story', story);
+			console.log('story before', story);
 			story.remove(function(err,story){
 				if(err){
 					return res.json(err);
 				}
-				console.log('story after remove: ', story);
+				console.log('story after removal: ', story);
 				return res.json(story);
 			})
 		})

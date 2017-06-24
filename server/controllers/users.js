@@ -17,16 +17,20 @@ module.exports = {
 
 	create: function(req,res) {
 		console.log(req.body)
+		var user = new User(req.body);
 		User.create(req.body, function(err,user){
 			if(err){
 				return res.json(err);
 			}
+
+			// destroy session in the factory?
 			if(req.session.user){
 				req.session.destroy();
 			}
 			else{
 				req.session.user=user;
 			}
+			console.log(req.session.user);
 			return res.json(user);
 		})
 	},
@@ -92,20 +96,5 @@ module.exports = {
 			return res.json(user);
 		})
 		
-	},
-
-
-	// show: function(req,res){
-	// 	User.findById(req.params.id).exec(function(err,user){
-	// 		if(err){
-	// 			return res.json(err);
-	// 		}
-	// 		if(!user){
-	// 			return res.json({
-	// 				"errors": "404 - User not found!"
-	// 			})
-	// 		}
-	// 		return res.json(user);
-	// 	})
-	// },
+	}
 };
