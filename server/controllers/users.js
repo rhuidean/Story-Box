@@ -92,20 +92,5 @@ module.exports = {
 			return res.json(user);
 		})
 		
-	},
-
-
-	// show: function(req,res){
-	// 	User.findById(req.params.id).exec(function(err,user){
-	// 		if(err){
-	// 			return res.json(err);
-	// 		}
-	// 		if(!user){
-	// 			return res.json({
-	// 				"errors": "404 - User not found!"
-	// 			})
-	// 		}
-	// 		return res.json(user);
-	// 	})
-	// },
+	}
 };

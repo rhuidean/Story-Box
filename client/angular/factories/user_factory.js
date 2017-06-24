@@ -1,3 +1,5 @@
+console.log('UserFactory');
+
 app.factory('UserFactory',function($http){
 	var factory = {};
 
@@ -16,7 +18,7 @@ app.factory('UserFactory',function($http){
 		$http.get('/sessions').then(callback);
 	}
 
-	factory.logout=function(call){
+	factory.logout=function(callback){
 		$http.delete('/sessions').then(callback);
 	}
 

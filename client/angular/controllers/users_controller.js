@@ -35,6 +35,8 @@ app.controller('UsersController',function(UserFactory,$location){
 		})
 	}
 
-	self.create = function()
+	self.create = function(){
+		
+	}
 
 })
