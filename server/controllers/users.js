@@ -21,6 +21,8 @@ module.exports = {
 			if(err){
 				return res.json(err);
 			}
+
+			// destroy session in the factory?
 			if(req.session.user){
 				req.session.destroy();
 			}

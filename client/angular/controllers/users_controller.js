@@ -35,8 +35,17 @@ app.controller('UsersController',function(UserFactory,$location){
 		})
 	}
 
-	self.create = function(){
-		
+	self.create = function(newUser){
+		console.log('newUser',newUser);
+		UserFactory.create(newUser,function(res){
+			if(res.data.errors){
+				for(key in res.data.errors){
+					var error = res.data.errors[key];
+					self.registration_errors.push(error.message);
+				}
+			} else {
+				$location.url('/dashboard');
+			}
+		})
 	}
-
 })
