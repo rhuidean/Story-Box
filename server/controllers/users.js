@@ -17,6 +17,7 @@ module.exports = {
 
 	create: function(req,res) {
 		console.log(req.body)
+		var user = new User(req.body);
 		User.create(req.body, function(err,user){
 			if(err){
 				return res.json(err);
@@ -29,6 +30,7 @@ module.exports = {
 			else{
 				req.session.user=user;
 			}
+			console.log(req.session.user);
 			return res.json(user);
 		})
 	},

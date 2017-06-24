@@ -1,6 +1,6 @@
 console.log("CommentFactory");
 
-Reply.factory('CommentFactory',function($http){
+app.factory('CommentFactory',function($http){
 	var factory = {};
 
 	factory.create = function(newComment,callback){

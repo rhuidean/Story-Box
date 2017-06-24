@@ -1,6 +1,6 @@
 console.log("ReplyFactory");
 
-Reply.factory('ReplyFactory',function($http){
+app.factory('ReplyFactory',function($http){
 	var factory = {};
 
 	factory.create = function(newReply,callback){

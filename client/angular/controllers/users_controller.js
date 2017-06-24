@@ -1,4 +1,4 @@
-app.controller('UsersController',function(UserFactory,$location){
+app.controller('UsersController',function(UserFactory,$location,$routeParams){
 	console.log('initializing UsersController...');
 	
 	var self = this;
@@ -44,8 +44,10 @@ app.controller('UsersController',function(UserFactory,$location){
 					self.registration_errors.push(error.message);
 				}
 			} else {
+				console.log("redirect");
 				$location.url('/dashboard');
 			}
+			console.log(res);
 		})
 	}
 })
