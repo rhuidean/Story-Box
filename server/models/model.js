@@ -1,6 +1,8 @@
 var mongoose = require('mongoose');
 var bcrypt = require('bcryptjs');
 
+
+//Cannot overwrite `User` model once compiled. -> two models with same name
 //Build Schemas
 
 //UserSchema
@@ -174,9 +176,10 @@ var ReplySchema = new mongoose.Schema({
 
 //Register Schemas
 //UserSchema
-mongoose.model('User', UserSchema);
+
 
 UserSchema.pre('save',function(callback){
+	console.log('hashing user password...')
 	this.hashPassword(this.password);
 	callback();
 });
@@ -192,6 +195,8 @@ UserSchema.pre('remove',function(callback){
 		Reply.remove({user:self._id},callback);
 	})
 })
+
+mongoose.model('User', UserSchema);
 
 //StorySchema
 mongoose.model('Story',StorySchema);

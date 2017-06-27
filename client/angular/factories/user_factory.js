@@ -15,8 +15,10 @@ app.factory('UserFactory',function($http){
 	}
 
 	// get response req.session.user
-	factory.session= function(callback){
+	factory.session = function(callback){
 		$http.get('/sessions').then(callback);
+		// if(!res.data.error){ callback(res.data) }
+		// else{ callback(false) }
 	}
 
 	// get response req.session.user empty

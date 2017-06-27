@@ -9,8 +9,10 @@ app.config(function($routeProvider){
 		controller: 'UsersController as UC'
 	})
 
+	// Must assign Controller to use req.params
 	.when('/dashboard', {
-		templateUrl: 'partials/dashboard.html'
+		templateUrl: 'partials/dashboard.html',
+		controller: 'UsersController as UC'
 	})
 
 	.when('/users/:id',{

@@ -6,11 +6,13 @@ app.controller('UsersController',function(UserFactory,$location,$routeParams){
 	self.login_errors = [];
 
 	self.session = function(){
-		console.log('sessions function');
 		UserFactory.session(function(res){
-			if(user){
-				self.current_user = user;
+			console.log('session: ', res)
+			if(!res.data.error){
+				self.current_user = res.data;
+				console.log('self CU: ', self.current_user)
 			} else {
+				self.current_user = {};
 				$location.url('/');
 			}
 		});
@@ -18,6 +20,7 @@ app.controller('UsersController',function(UserFactory,$location,$routeParams){
 
 	self.login = function(loginUser){
 		UserFactory.login(loginUser,function(res){
+			console.log('login: ', res)
 			if(res.data.errors){
 				for (key in res.data.errors){
 					var error = res.data.errors[key];

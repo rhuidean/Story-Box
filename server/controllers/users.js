@@ -17,7 +17,7 @@ module.exports = {
 
 	create: function(req,res) {
 		console.log(req.body)
-		var user = new User(req.body);
+		// var user = new User(req.body);
 		User.create(req.body, function(err,user){
 			if(err){
 				return res.json(err);
@@ -41,6 +41,7 @@ module.exports = {
 			if(err){
 				return res.json(err);
 			}
+			console.log('user: ', user)
 
 			// check for null, and authenticate the password
 			if(user && user.authenticate(req.body.password)){
@@ -69,7 +70,7 @@ module.exports = {
 
 	session : function(req,res){
 		if(!req.session.user) {
-			return false
+			return res.json({ "error": false })
 		}
 		else {
 			return res.json(req.session.user);
