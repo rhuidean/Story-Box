@@ -17,11 +17,12 @@ app.config(function($routeProvider){
 
 	.when('/users/:id',{
 		templateUrl: 'partials/user.html',
-		controller: 'StoriesController as SC'
+		controller: 'UsersController as UC'
 	})
 
 	.when('/query',{
-		templateUrl: 'partials/query.html'
+		templateUrl: 'partials/query.html',
+		controller: 'UsersController as UC'
 	})
 
 	.otherwise({ redirectTo: '/'});

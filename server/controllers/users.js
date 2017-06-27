@@ -35,6 +35,8 @@ module.exports = {
 		})
 	},
 
+
+	// validate on the client controller side; data in req.body
 	login: function(req,res){
 		// look up the email and return an object
 		User.findOne({email: req.body.email}, function(err,user){
