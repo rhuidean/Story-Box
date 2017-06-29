@@ -12,12 +12,18 @@ app.factory('StoryFactory',function($http){
 	}
 
 	factory.destroy=function(id,callback){
-		$http.delete('/stories/:id').then(callback);
+		$http.delete('/stories/' + id).then(callback);
 	}
 
+	// routes +
 	factory.update=function(id,callback){
-		$http.put('/stories/:id').then(callback);
+		$http.put('/stories/'+id).then(callback);
 	}
+
+	return factory;
 
 })
 
+
+
+//angular.js:14525 Error: [$injector:undef] Provider 'IdeaFactory' must return a value from $get factory method.

@@ -32,7 +32,10 @@ module.exports = {
 		})
 	},
 
-	create: function(res,req){
+	// req.body undefined -> console.log before and after 
+	// req and res switch
+	create: function(req,res){
+		console.log('req.body: ', req.body)
 		Idea.create(req.body, function(err,idea){
 			if(err){
 				return res.json(err);
@@ -41,7 +44,7 @@ module.exports = {
 				if(err){
 					return res.json(err);
 				}
-				Story.findByIdAndUpdate(req.body,story,{ $push: {ideas: idea._id}},function(err,story){
+				Story.findByIdAndUpdate(req.body.story,{ $push: {ideas: idea._id}},function(err,story){
 					if(err){
 						return res.json(err);
 					}

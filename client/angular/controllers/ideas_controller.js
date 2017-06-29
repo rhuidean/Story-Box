@@ -1,4 +1,4 @@
-console.log('repliescontroller');
+console.log('ideascontroller');
 app.controller('RepliesController',function(){
 	console.log("initializing RepliesController...");
 

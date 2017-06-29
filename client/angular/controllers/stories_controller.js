@@ -1,4 +1,6 @@
-console.log('storiescontroller');
+console.log('StoriesController');
+// factory return
+// controller not loading syntax
 app.controller('StoriesController',function(UserFactory,StoryFactory,IdeaFactory,CommentFactory,ReplyFactory,$routeParams){
 	console.log("initializing StoriesController...");
 
@@ -13,17 +15,37 @@ app.controller('StoriesController',function(UserFactory,StoryFactory,IdeaFactory
 	self.new_reply_errors=[];
 	self.newReply = {};
 
+
+	// self.index proper display should refresh
 	self.index = function(){
-		StoriesFactory.index(function(res){
+		StoryFactory.index(function(res){
 			self.stories = res.data;
 			console.log(self.stories);
 		})
 	}
 
 	self.create=function(newStory){
-		UserFactory.session(function(user){
+		console.log("Submit form",newStory)
+		var array_storykeywords =[];
+		var string_storykeywords=newStory.storykeywords;
+		console.log(string_storykeywords);
+		if (RegExp(/[# ,]/).test(string_storykeywords)==false) {
+			newStory.storykeywords=array_storykeywords.push(string_storykeywords);
+		} else {
+			array_storykeywords=string_storykeywords.split(/(?=[# ,])/);
+			for (var i=0;i<array_storykeywords.length;i++){
+				array_storykeywords[i]=array_storykeywords[i].replace(/[#, ]?/g,'');
+			}
+			newStory.storykeywords=array_storykeywords;
+			console.log(newStory.storykeywords);
+		}
+		console.log(newStory.storykeywords[0])
+		UserFactory.session(function(user){			
+			console.log("StoryUser",user);
 			newStory.user=user._id;
+			console.log('newStory:', newStory)
 			StoryFactory.create(newStory,function(res){
+				console.log(newStory.user)
 				if(res.data.errors){
 					for(key in res.data.errors){
 						var error = res.data.error[key];
@@ -46,6 +68,44 @@ app.controller('StoriesController',function(UserFactory,StoryFactory,IdeaFactory
 		StoryFactory.update(story_id,self.index);
 	}	
 
+	// story._id not possible
+	self.createIdea=function(newIdea,index_story,story_id){
+		console.log("Controller Idea",newIdea,index_story,story_id)
+		if(!newIdea[index_story]){
+			newIdea[index_story]={};
+		}
+		// newIdea {
+		// 	'0': {},
+		// 	'1': {'name': 'Cody'},
+
+		// }
+		// newIdea{
+		// 	'name': 'Cody'
+		// }
+		newIdea=newIdea[index_story];
+		newIdea.story=story_id;
+		UserFactory.session(function(user){			
+			console.log("IdeaUser",user);
+			newIdea.user=user._id;
+			console.log('newIdea:', newIdea);
+			IdeaFactory.create(newIdea,function(res){
+				console.log(newIdea.user)
+				if(res.data.errors){
+					for(key in res.data.errors){
+						var error = res.data.error[key];
+						self.new_story_errors.push(error.message);
+					}
+				} else {
+					self.index();
+				}
+			})
+		})
+	}
+
+	self.destroyIdea=function(idea_id){
+		console.log("destroy",idea_id);
+		IdeaFactory.destroy(idea_id,self.index);
+	}
 
 })
 

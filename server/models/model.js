@@ -75,7 +75,7 @@ var StorySchema = new mongoose.Schema({
 	}]
 
 
-}, {timestamp: true})
+}, {timestamps: true})
 
 //IdeaSchema
 var IdeaSchema = new mongoose.Schema({
@@ -174,8 +174,9 @@ var ReplySchema = new mongoose.Schema({
 }, { timestamps: true});
 
 
-//Register Schemas
+//Register Schemas 
 //UserSchema
+//Register the Schemas last
 
 
 UserSchema.pre('save',function(callback){

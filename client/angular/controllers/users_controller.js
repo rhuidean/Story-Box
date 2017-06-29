@@ -6,10 +6,10 @@ app.controller('UsersController',function(UserFactory,$location,$routeParams){
 	self.login_errors = [];
 
 	self.session = function(){
-		UserFactory.session(function(res){
-			console.log('session: ', res)
-			if(!res.data.error){
-				self.current_user = res.data;
+		UserFactory.session(function(user){
+			console.log('session: ', user)
+			if(user){
+				self.current_user = user;
 				console.log('self CU: ', self.current_user)
 			} else {
 				self.current_user = {};

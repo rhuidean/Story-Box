@@ -49,7 +49,7 @@ module.exports = {
 			if(user && user.authenticate(req.body.password)){
 				if(!req.session.user){
 					req.session.user = user;
-					console.log(req.session.user);
+					console.log("session",req.session.user);
 				}
 				return res.json(req.session.user);
 			}
@@ -71,10 +71,12 @@ module.exports = {
 	},
 
 	session : function(req,res){
+		console.log("user session",req.session.user)
 		if(!req.session.user) {
 			return res.json({ "error": false })
 		}
 		else {
+			console.log(req.session.user._id,"server seesion")
 			return res.json(req.session.user);
 		}
 	},
