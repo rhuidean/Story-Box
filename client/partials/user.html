@@ -34,10 +34,11 @@
 				</div>
 				<div ng-repeat="idea in story.ideas">
 					<h4 class="inline_block">{{idea.createdAt}}</h4>
-					<a href="" ng-if="UC.current_user._id==idea.user._id" ng-click="MC.destroyIdea(idea._id)">Delete</a>
+					<a href="" ng-if="UC.current_user._id==idea.user._id" ng-click="SC.destroyIdea(idea._id)">Delete</a>
 					<p>{{idea.title}}</p>
-					<p>{{idea.descriptio}}</p>
-					<p>{{idea.image}}</p>
+					<p>{{idea.description}}</p>
+					<p ng-if={{idea.source}}!="YouTube"><img src={{idea.image}}></p>
+					<p ng-if={{idea.source}}=="YouTube"><iframe width="560" height="315" src={{idea.url}} frameborder="0" allowfullscreen></iframe></p>
 					<p>{{idea.source}}</p>
 						<div ng-repeat="comment in idea.comments" class="left_indent">
 							<h4 class="inline_block">{{comment.user.username}} - {{comment.createdAt}}</h4>
@@ -46,7 +47,7 @@
 						</div>
 						<form ng-submit="IC.createComment(IC.newComment, index, message._id)">
 							<div>
-								<label>Post a Idea:</label>
+								<label>Post a Comment:</label>
 							</div>
 							<div>
 								<textarea ng-model="MC.newComment[index].comment"></textarea>
@@ -59,11 +60,8 @@
 					<div>
 						<label>Post a Idea:</label>
 					</div>
-					<input type="text" ng-model="SC.newIdea[index_story].title">
-					<input type="text" ng-model="SC.newIdea[index_story].description">
-					<input type="text" ng-model="SC.newIdea[index_story].image">
-					<input type="text" ng-model="SC.newIdea[index_story].source">
-					<input type="submit" value="Post Comment">
+					<input type="text" ng-model="SC.newIdea[index_story].url">
+					<input type="submit" value="Post Idea">
 				</form>
 			</div>
 		</div>

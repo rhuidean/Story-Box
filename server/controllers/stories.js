@@ -22,7 +22,7 @@ module.exports = {
 				model: 'User',
 			}
 		}).populate({
-			path: 'ideas',
+			path: 'comments',
 			model: 'Idea',
 			options: {sort: {createdAt: 1}},
 			populate: {

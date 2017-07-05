@@ -13,7 +13,7 @@ app.factory('IdeaFactory',function($http){
 	}
 
 	factory.destroy=function(id,callback){
-		$http.delete('/ideas/:id').then(callback);
+		$http.delete('/ideas/'+id).then(callback);
 	}
 
 	factory.update=function(id,callback){

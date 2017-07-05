@@ -5,6 +5,9 @@ var bcrypt = require('bcryptjs');
 //Cannot overwrite `User` model once compiled. -> two models with same name
 //Build Schemas
 
+// SyntaxError: Unexpected identifier ,
+//ReferenceError: string is not defined string
+
 //UserSchema
 var UserSchema = new mongoose.Schema({
 	username: {
@@ -103,6 +106,10 @@ var IdeaSchema = new mongoose.Schema({
 	},
 
 	source: {
+		type: String
+	},
+
+	url: {
 		type: String
 	},
 

@@ -20,7 +20,7 @@ app.controller('StoriesController',function(UserFactory,StoryFactory,IdeaFactory
 	self.index = function(){
 		StoryFactory.index(function(res){
 			self.stories = res.data;
-			console.log(self.stories);
+			console.log('here: ', self.stories);
 		})
 	}
 
@@ -32,6 +32,8 @@ app.controller('StoriesController',function(UserFactory,StoryFactory,IdeaFactory
 		if (RegExp(/[# ,]/).test(string_storykeywords)==false) {
 			newStory.storykeywords=array_storykeywords.push(string_storykeywords);
 		} else {
+			console.log(string_storykeywords)
+			console.log('type: ', typeof(string_storykeywords))
 			array_storykeywords=string_storykeywords.split(/(?=[# ,])/);
 			for (var i=0;i<array_storykeywords.length;i++){
 				array_storykeywords[i]=array_storykeywords[i].replace(/[#, ]?/g,'');
@@ -83,6 +85,7 @@ app.controller('StoriesController',function(UserFactory,StoryFactory,IdeaFactory
 		// 	'name': 'Cody'
 		// }
 		newIdea=newIdea[index_story];
+		
 		newIdea.story=story_id;
 		UserFactory.session(function(user){			
 			console.log("IdeaUser",user);
@@ -90,12 +93,14 @@ app.controller('StoriesController',function(UserFactory,StoryFactory,IdeaFactory
 			console.log('newIdea:', newIdea);
 			IdeaFactory.create(newIdea,function(res){
 				console.log(newIdea.user)
+				console.log("Created newIdea",newIdea)
 				if(res.data.errors){
 					for(key in res.data.errors){
 						var error = res.data.error[key];
 						self.new_story_errors.push(error.message);
 					}
 				} else {
+					console.log(res)
 					self.index();
 				}
 			})
