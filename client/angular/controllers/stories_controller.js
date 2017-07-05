@@ -1,7 +1,7 @@
 console.log('StoriesController');
 // factory return
 // controller not loading syntax
-app.controller('StoriesController',function(UserFactory,StoryFactory,IdeaFactory,CommentFactory,ReplyFactory,$routeParams){
+app.controller('StoriesController',function(UserFactory,StoryFactory,IdeaFactory,CommentFactory,ReplyFactory,$routeParams, $sce){
 	console.log("initializing StoriesController...");
 
 	var self = this;
@@ -111,6 +111,12 @@ app.controller('StoriesController',function(UserFactory,StoryFactory,IdeaFactory
 		console.log("destroy",idea_id);
 		IdeaFactory.destroy(idea_id,self.index);
 	}
+
+	// cross domain issues
+	self.trustSrc = function(src) {
+		src = src.replace("watch?v=", "embed/");
+	    return $sce.trustAsResourceUrl(src);
+  	}
 
 })
 

@@ -37,8 +37,9 @@
 					<a href="" ng-if="UC.current_user._id==idea.user._id" ng-click="SC.destroyIdea(idea._id)">Delete</a>
 					<p>{{idea.title}}</p>
 					<p>{{idea.description}}</p>
-					<p ng-if={{idea.source}}!="YouTube"><img src={{idea.image}}></p>
-					<p ng-if={{idea.source}}=="YouTube"><iframe width="560" height="315" src={{idea.url}} frameborder="0" allowfullscreen></iframe></p>
+					<p ng-if="idea.source!='YouTube'"><img src={{idea.image}}></p>
+					<p ng-if="idea.source=='YouTube'"><iframe class="youtube-player" width="560" height="315" ng-src={{SC.trustSrc(idea.url)}} frameborder="0" allowfullscreen></iframe></p>
+					<p>{{idea.url}}</p>
 					<p>{{idea.source}}</p>
 						<div ng-repeat="comment in idea.comments" class="left_indent">
 							<h4 class="inline_block">{{comment.user.username}} - {{comment.createdAt}}</h4>
