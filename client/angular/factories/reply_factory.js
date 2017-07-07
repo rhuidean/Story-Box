@@ -19,5 +19,6 @@ app.factory('ReplyFactory',function($http){
 		$http.put('/replies/:id').then(callback);
 	}
 
+	return factory;
 })
 

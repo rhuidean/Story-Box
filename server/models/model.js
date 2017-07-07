@@ -1,7 +1,12 @@
 var mongoose = require('mongoose');
 var bcrypt = require('bcryptjs');
 
+
+//Cannot overwrite `User` model once compiled. -> two models with same name
 //Build Schemas
+
+// SyntaxError: Unexpected identifier ,
+//ReferenceError: string is not defined string
 
 //UserSchema
 var UserSchema = new mongoose.Schema({
@@ -73,7 +78,7 @@ var StorySchema = new mongoose.Schema({
 	}]
 
 
-}, {timestamp: true})
+}, {timestamps: true})
 
 //IdeaSchema
 var IdeaSchema = new mongoose.Schema({
@@ -101,6 +106,10 @@ var IdeaSchema = new mongoose.Schema({
 	},
 
 	source: {
+		type: String
+	},
+
+	url: {
 		type: String
 	},
 
@@ -172,11 +181,13 @@ var ReplySchema = new mongoose.Schema({
 }, { timestamps: true});
 
 
-//Register Schemas
+//Register Schemas 
 //UserSchema
-mongoose.model('User', UserSchema);
+//Register the Schemas last
+
 
 UserSchema.pre('save',function(callback){
+	console.log('hashing user password...')
 	this.hashPassword(this.password);
 	callback();
 });
@@ -192,6 +203,8 @@ UserSchema.pre('remove',function(callback){
 		Reply.remove({user:self._id},callback);
 	})
 })
+
+mongoose.model('User', UserSchema);
 
 //StorySchema
 mongoose.model('Story',StorySchema);

@@ -22,7 +22,7 @@ module.exports = {
 				model: 'User',
 			}
 		}).populate({
-			path: 'ideas',
+			path: 'comments',
 			model: 'Idea',
 			options: {sort: {createdAt: 1}},
 			populate: {
@@ -42,6 +42,8 @@ module.exports = {
 	},
 
 	create: function(req,res){
+		console.log('req.body: ', req.body)
+		console.log("Server Story factory")
 		Story.create(req.body,function(err,story){
 			if(err){
 				return res.json(err);
@@ -50,6 +52,7 @@ module.exports = {
 				if(err){
 					return res.json(err);
 				}
+				console.log("Date",story.createdAt)
 				return res.json(story);	
 			})
 		})

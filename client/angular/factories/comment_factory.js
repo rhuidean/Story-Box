@@ -19,5 +19,6 @@ app.factory('CommentFactory',function($http){
 		$http.put('/comments/:id').then(callback);
 	}
 
+	return factory;
 })
 

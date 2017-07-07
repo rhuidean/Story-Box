@@ -17,7 +17,7 @@ module.exports = {
 
 	create: function(req,res) {
 		console.log(req.body)
-		var user = new User(req.body);
+		// var user = new User(req.body);
 		User.create(req.body, function(err,user){
 			if(err){
 				return res.json(err);
@@ -35,18 +35,21 @@ module.exports = {
 		})
 	},
 
+
+	// validate on the client controller side; data in req.body
 	login: function(req,res){
 		// look up the email and return an object
 		User.findOne({email: req.body.email}, function(err,user){
 			if(err){
 				return res.json(err);
 			}
+			console.log('user: ', user)
 
 			// check for null, and authenticate the password
 			if(user && user.authenticate(req.body.password)){
 				if(!req.session.user){
 					req.session.user = user;
-					console.log(req.session.user);
+					console.log("session",req.session.user);
 				}
 				return res.json(req.session.user);
 			}
@@ -68,10 +71,12 @@ module.exports = {
 	},
 
 	session : function(req,res){
+		console.log("user session",req.session.user)
 		if(!req.session.user) {
-			return false
+			return res.json({ "error": false })
 		}
 		else {
+			console.log(req.session.user._id,"server seesion")
 			return res.json(req.session.user);
 		}
 	},

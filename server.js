@@ -8,7 +8,7 @@ var morgan = require('morgan');
 
 app.use(morgan('dev'));
 app.use(cookieParser());
-app.use(session({secret: 'socyi3ck', saveUninitialized: false, resave: true}));
+app.use(session({secret: 'socyi3ck', saveUninitialized: false, resave: false, rolling: true}));
 
 app.use(express.static(__dirname + '/client'));
 app.use(express.static(__dirname + '/bower_components'));
