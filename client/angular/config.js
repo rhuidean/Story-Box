@@ -5,7 +5,7 @@ app.config(function($routeProvider){
 	$routeProvider
 	
 	.when('/', {
-		templateUrl: 'partials/users_new.html',
+		templateUrl: 'partials/users_new2.html',
 		controller: 'UsersController as UC'
 	})
 
