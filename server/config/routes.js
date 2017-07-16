@@ -4,6 +4,7 @@ var Ideas = require('../controllers/ideas');
 var Comments = require('../controllers/comments');
 var Replies = require('../controllers/replies')
 
+// require is not function explict exports 
 module.exports = function(app){
 	app.post('/users',Users.create);
 	app.post('/sessions',Users.login);

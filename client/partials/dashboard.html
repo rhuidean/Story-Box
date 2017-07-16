@@ -1,7 +1,24 @@
+<nav class="navbar navbar-fixed-top">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">WebSiteName</a>
+    </div>
+    <ul class="nav navbar-nav">
+      <li class="active"><a href="#">Home</a></li>
+      <li><a href="#">Page 1</a></li>
+      <li><a href="#">Page 2</a></li>
+      <li><a href="#">Page 3</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- -->
+
+
 <div ng-init="UC.session()">
 	<div class="header">
 		<h3 class="inline_block">Jason Social</h3>
-		<h3 class="float_right inline_block">Welcome {{UC.current_user.name }}</h3>
+		<h3 class="float_right inline_block">Welcome {{UC.current_user.username }}</h3>
 		<a href="#!/users/{{UC.current_user._id}}"}}>USER</a>
 		<a href="#" ng-click="UC.logout()">Logout</a>
 	</div>
