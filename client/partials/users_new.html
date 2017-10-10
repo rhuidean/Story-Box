@@ -1,43 +1,101 @@
-<div>
-	<h3>Register</h3>
-	<form ng-submit="UC.create(UC.newUser)">
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Login and Registration</title>
+	  <!--Import Google Icon Font-->
+	  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+	  <!-- Import Playfair and Display css -->
+	  <link href="https://fonts.googleapis.com/css?family=Playfair+Display" rel="stylesheet">
+
+	  <!--Import Font Awesome-->
+	  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+	  <!-- Compiled and minified CSS -->
+	  <link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css" rel="stylesheet">
+
+	  <!--Import materialize.css-->
+	  <link rel="stylesheet" href="assets/css/style.css">
+
+	  <!--Let browser know website is optimized for mobile-->
+	  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+	    <!--Import jQuery before materialize.js-->
+	  <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+
+
+	  <!-- Compiled and minified JavaScript -->
+	  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+
+</head>
+<body>
+	<div class="container white z-depth-2">
+	<ul class="tabs teal">
+		<li class="tab col s3"><a class="white-text active" href="#login">login</a></li>
+		<li class="tab col s3"><a class="white-text" href="#register">register</a></li>
+	</ul>
+	</div>
+
+	<div id="login" class="col s12">
+		<form class="col s12" ng-submit="UC.login(UC.loginUser)">
+			<div class="form-container">
+				<h3 class="teal-text">Hello</h3>
+				<div class="row">
+					<div class="input-field col s12">
+						<input id="email" type="email" class="validate" ng-model="UC.loginUser.email">
+						<label for="email">Email</label>
+					</div>
+				</div>
+				<div class="row">
+					<div class="input-field col s12">
+						<input id="password" type="password" class="validate" ng-model="UC.loginUser.password">
+						<label for="password">Password</label>
+					</div>
+				</div>
+				<br>
+				<center>
+					<button class="btn waves-effect waves-light teal" type="submit" name="action">Connect</button>
+					<br>
+					<br>
+					<a href="">Forgotten password?</a>
+				</center>
+			</div>
+		</form>
+		<p class="error" ng-repeat="error in UC.login_errors">{{ error }}</p>
+	</div>
+	<div id="register" class="col s12">
+		<form class="col s12" ng-submit="UC.create(UC.newUser)">
+			<div class="form-container">
+				<h3 class="teal-text">Welcome</h3>
+				<div class="row">
+					<div class="input-field col s6">
+						<input id="name" type="text" class="validate" ng-model="UC.newUser.username">
+						<label for="name">Name</label>
+					</div>
+				</div>
+				<div class="row">
+					<div class="input-field col s12">
+						<input id="email" type="email" class="validate" ng-model="UC.newUser.email">
+						<label for="email">Email</label>
+					</div>
+				</div>
+				<div class="row">
+					<div class="input-field col s12">
+						<input id="password" type="password" class="validate" ng-model="UC.newUser.password">
+						<label for="password">Password</label>
+					</div>
+				</div>
+				<center>
+					<button class="btn waves-effect waves-light teal" type="submit" name="action">Submit</button>
+				</center>
+			</div>
+		</form>
 		<div>
-			<label>Name</label>
-			<input type="text" ng-model="UC.newUser.username">
+			<p class="error" ng-repeat="error in UC.registration_errors">{{ error }}</p>
 		</div>
-		<div>
-			<label>Email</label>
-			<input type="text" ng-model="UC.newUser.email">
-		</div>
-		<div>
-			<label>Password</label>
-			<input type="password" ng-model="UC.newUser.password">
-		</div>
-		<div>
-		<!-- <div>
-			<label>Password Confirmation</label>
-			<input type="password_confirmation" ng-model="UC.newUser.password">
-		</div> -->
-		<div>
-			<input type="submit" value="Create User">
-		</div>
-	</form>
-	<div>
-		<p class="error" ng-repeat="error in UC.registration_errors">{{ error }}</p>
 	</div>
 </div>
-<div>
-	<h3>Login</h3>
-	<form ng-submit="UC.login(UC.loginUser)">
-		<div>
-			<label>Email</label>
-			<input type="text" ng-model="UC.loginUser.email">
-		</div>
-		<div>
-			<label>Password</label>
-			<input type="password" ng-model="UC.loginUser.password">
-		</div>
-		<input type="submit" value="Login">
-	</form>
-	<p class="error" ng-repeat="error in UC.login_errors">{{ error }}</p>
-</div>
+</body>
+</html>
+
+
