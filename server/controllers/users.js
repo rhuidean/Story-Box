@@ -76,7 +76,7 @@ module.exports = {
 			return res.json({ "error": false })
 		}
 		else {
-			console.log(req.session.user._id,"server seesion")
+			console.log(req.session.user._id,"server session")
 			return res.json(req.session.user);
 		}
 	},
