@@ -36,36 +36,35 @@
 		</ul>
 		<div id="login" class="col s12">
 			<form class="col s12" ng-submit="UC.login(UC.loginUser)">
-			<!-- 	<div class="form-container"> -->
-				<h3 class="teal-text">Hello</h3>
-				<div class="row">
-					<div class="input-field col s12">
-						<input id="email" type="email" class="validate" ng-model="UC.loginUser.email">
-						<label for="email">Email</label>
+				<div class="form-container">
+					<h3 class="teal-text">Hello</h3>
+					<div class="row">
+						<div class="input-field col s12">
+							<input id="email" type="email" class="validate" ng-model="UC.loginUser.email">
+							<label for="email">Email</label>
+						</div>
 					</div>
-				</div>
-				<div class="row">
-					<div class="input-field col s12">
-						<input id="password" type="password" class="validate" ng-model="UC.loginUser.password">
-						<label for="password">Password</label>
+					<div class="row">
+						<div class="input-field col s12">
+							<input id="password" type="password" class="validate" ng-model="UC.loginUser.password">
+							<label for="password">Password</label>
+						</div>
 					</div>
-				</div>
-				<br>
-				<center>
-					<input class="btn waves-effect waves-light teal" type="submit" value="Letogin">
 					<br>
-					<br>	
-				
-				</center>
-			<!-- 	</div> -->		
+					<center>
+						<input class="btn waves-effect waves-light teal" type="submit" value="Letogin">
+						<br>
+						<br>	
+					</center>
+				</div>		
 			</form>
-<!-- 			<div>
+			<div>
 				<p class="error" ng-repeat="error in UC.login_errors">{{ error }}</p>
-			</div> -->
+			</div>
 		</div>
 		<div id="register" class="col s12">
 			<form class="col s12" ng-submit="UC.create(UC.newUser)">
-				<!-- <div class="form-container"> -->
+				<div class="form-container">
 				<h3 class="teal-text">Welcome</h3>
 				<div class="row">
 					<div class="input-field col s6">
@@ -86,13 +85,14 @@
 					</div>
 				</div>
 				<center>
-					<Button class="btn waves-effect waves-light teal" type="submit" name="Submit"></Button>
+					<Button class="btn waves-effect waves-light teal" type="submit" name="action">Submit</Button>
+					<br>
+					<br>
 				</center>
-<!-- 				</div> -->
 			</form>
-<!-- 			<div>
+			<div>
 				<p class="error" ng-repeat="error in UC.registration_errors">{{ error }}</p>
-			</div> -->
+			</div>
 		</div>
 	</div>
 </body>
